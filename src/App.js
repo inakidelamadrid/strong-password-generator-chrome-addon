@@ -1,6 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/NavBar';
 import HomePage from './pages/HomePage';
 
@@ -10,7 +11,9 @@ function App() {
       <NavBar bg="primary" expand="lg" variant="dark">
         <NavBar.Brand href="#home">Iron Password</NavBar.Brand>
       </NavBar>
-      <HomePage />
+      <Container>
+        <HomePage />
+      </Container>
     </div>
   );
 }
