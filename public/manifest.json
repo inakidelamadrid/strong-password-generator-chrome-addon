@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SPwdGen",
+  "name": "Strong Password Generator",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,6 +18,10 @@
       "sizes": "512x512"
     }
   ],
+  "browser_action": {
+    "default_icon": "logo512.png",
+    "default_popup": "popup.html"
+  },
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
