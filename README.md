@@ -1,5 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+# Strong password generator chrome  add-on
 ## Available Scripts
 
 In the project directory, you can run:
