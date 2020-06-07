@@ -63,3 +63,13 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## TODO
+- [ ] Add options "Easy to say", "Easy to read" and "All characters" to generate the password
+- [ ] Add checkboxes (inclusive) for the attributes (lowercase, uppercase, numbers, and special characters)
+- [ ] Add a tooltip functionality for the following info on the radiobuttons
+- [ ] Easy to say: Avoid numbers and special characters
+- [ ] Easy to read: Avoid ambiguous values such as 1, l, 0, O
+- [ ] All characters: Any character combination
+- [ ] Add an input to explicitly exclude certain characters
+- [ ] Add button to copy to clipboard
