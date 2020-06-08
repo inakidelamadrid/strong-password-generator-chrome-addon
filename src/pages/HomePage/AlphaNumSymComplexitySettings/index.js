@@ -1,4 +1,6 @@
 import React from 'react';
+import capitalize from 'lodash/capitalize';
+import map from 'lodash/map';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -53,17 +55,14 @@ const AlphaNumSymComplexitySettings = ({
         />
       </Col>
       <Col xs={6}>
-        <Form.Check
-          type={'checkbox'}
-          id={`character_type_lower`}
-          label={'Lowercase'}
-        />
-
-        <Form.Check
-          id={'character_type_upper'}
-          type={'checkbox'}
-          label={'Uppercase'}
-        />
+        {map(CHARACTER_TYPES, (value, key) => (
+          <Form.Check
+            id={`character_type_${key}`}
+            key={`cb_${key}`}
+            label={capitalize(value)}
+            type={'checkbox'}
+          />
+        ))}
       </Col>
     </Form.Group>
   );
