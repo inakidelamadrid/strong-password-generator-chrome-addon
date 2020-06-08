@@ -65,8 +65,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 ## TODO
-- [ ] Add options "Easy to say", "Easy to read" and "All characters" to generate the password
-- [ ] Add checkboxes (inclusive) for the attributes (lowercase, uppercase, numbers, and special characters)
+- [X] Add options "Easy to say", "Easy to read" and "All characters" to generate the password
+- [X] Add checkboxes (inclusive) for the attributes (lowercase, uppercase, numbers, and special characters)
 - [ ] Add a tooltip functionality for the following info on the radiobuttons
 - [ ] Easy to say: Avoid numbers and special characters
 - [ ] Easy to read: Avoid ambiguous values such as 1, l, 0, O
