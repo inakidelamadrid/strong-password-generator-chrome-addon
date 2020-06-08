@@ -40,6 +40,8 @@ const HomePage = props => {
         ? NUMBERS_AND_SYMBOLS_GROUP_TYPES
         : [];
     setDisabledCharTypes(charTypesToDisable);
+    // if disabled types were checked, remove them from the selectedTypes
+    setSelectedCharTypes(difference(selectedCharTypes, charTypesToDisable))
     setSelectedCharacterGroup(changeEvent.target.value);
   };
 
