@@ -19,7 +19,7 @@ const HomePage = props => {
   const [digitsLength, setDigitsLength] = useState(8);
 
   const [disabledCharTypes, setDisabledCharTypes] = useState(
-    NUMBERS_AND_SYMBOLS_GROUP_TYPES,
+    [NUMBERS_AND_SYMBOLS_GROUP_TYPES],
   );
 
   const [selectedCharacterGroup, setSelectedCharacterGroup] = useState(
@@ -47,6 +47,10 @@ const HomePage = props => {
 
   const handleCharacterTypeChange = (changeEvent) => {
     const {value, checked} = changeEvent.target;
+    // do nothing for the 'lower' value, since we need to have at least one selected type
+    if(value === CHARACTER_TYPES.lower)
+      return;
+
     const action = checked ? concat : difference;
     const newSelectedCharTypes = action(selectedCharTypes, [value]);
     setSelectedCharTypes(newSelectedCharTypes)
