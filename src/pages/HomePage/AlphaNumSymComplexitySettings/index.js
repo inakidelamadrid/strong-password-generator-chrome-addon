@@ -3,8 +3,20 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
+export const CHARACTER_GROUPS_VALUES = {
+  all: 'all',
+  easyToRead: 'easyToRead',
+  easyToSay: 'easyToSay',
+};
+
+export const CHARACTER_TYPES = {
+  lower: 'lowercase',
+  upper: 'uppercase',
+  number: 'numbers',
+  symbols: 'symbols',
+};
+
 const AlphaNumSymComplexitySettings = ({
-  groupsValues,
   handleCharacterGroupOptionsChange,
   selectedCharacterGroup,
 }) => {
@@ -15,30 +27,44 @@ const AlphaNumSymComplexitySettings = ({
           id={'characters_easy_to_say'}
           label={'Easy to say'}
           type={'radio'}
-          checked={selectedCharacterGroup === groupsValues.easyToSay}
+          checked={selectedCharacterGroup === CHARACTER_GROUPS_VALUES.easyToSay}
           onChange={handleCharacterGroupOptionsChange}
-          value={groupsValues.easyToSay}
+          value={CHARACTER_GROUPS_VALUES.easyToSay}
         />
 
         <Form.Check
-          checked={selectedCharacterGroup === groupsValues.easyToRead}
+          checked={
+            selectedCharacterGroup === CHARACTER_GROUPS_VALUES.easyToRead
+          }
           id={'characters_easy_to_read'}
           label={'Easy to read'}
           onChange={handleCharacterGroupOptionsChange}
           type={'radio'}
-          value={groupsValues.easyToRead}
+          value={CHARACTER_GROUPS_VALUES.easyToRead}
         />
 
         <Form.Check
-          checked={selectedCharacterGroup === groupsValues.all}
+          checked={selectedCharacterGroup === CHARACTER_GROUPS_VALUES.all}
           id={'all_characters'}
           label={'All characters'}
           onChange={handleCharacterGroupOptionsChange}
           type={'radio'}
-          value={groupsValues.all}
+          value={CHARACTER_GROUPS_VALUES.all}
         />
       </Col>
-      <Col xs={6}></Col>
+      <Col xs={6}>
+        <Form.Check
+          type={'checkbox'}
+          id={`character_type_lower`}
+          label={'Lowercase'}
+        />
+
+        <Form.Check
+          id={'character_type_upper'}
+          type={'checkbox'}
+          label={'Uppercase'}
+        />
+      </Col>
     </Form.Group>
   );
 };

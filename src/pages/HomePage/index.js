@@ -4,12 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import styles from './styles.module.css';
 import AlphaNumSymComplexitySettings from './AlphaNumSymComplexitySettings';
-
-const CHARACTER_GROUPS_VALUES = {
-  all: 'all',
-  easyToRead: 'easyToRead',
-  easyToSay: 'easyToSay',
-};
+import {CHARACTER_GROUPS_VALUES} from './AlphaNumSymComplexitySettings';
 
 const HomePage = props => {
   const [digitsLength, setDigitsLength] = useState(8);
@@ -43,7 +38,6 @@ const HomePage = props => {
           </Col>
         </Form.Group>
         <AlphaNumSymComplexitySettings
-          groupsValues={CHARACTER_GROUPS_VALUES}
           handleCharacterGroupOptionsChange={handleCharacterGroupOptionsChange}
           selectedCharacterGroup={selectedCharacterGroup}
         />
