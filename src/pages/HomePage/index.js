@@ -11,9 +11,16 @@ import {
 
 const HomePage = props => {
   const [digitsLength, setDigitsLength] = useState(8);
+
+  const [disabledCharTypes, setDisabledCharTypes] = useState([
+    CHARACTER_TYPES.number,
+    CHARACTER_TYPES.symbols,
+  ]);
+
   const [selectedCharacterGroup, setSelectedCharacterGroup] = useState(
     CHARACTER_GROUPS_VALUES.easyToSay,
   );
+
   const [selectedCharTypes, setSelectedCharTypes] = useState([
     CHARACTER_TYPES.lower,
     CHARACTER_TYPES.upper,
@@ -45,6 +52,7 @@ const HomePage = props => {
           </Col>
         </Form.Group>
         <AlphaNumSymComplexitySettings
+          disabledCharTypes={disabledCharTypes}
           handleCharacterGroupOptionsChange={handleCharacterGroupOptionsChange}
           selectedCharacterGroup={selectedCharacterGroup}
           selectedCharTypes={selectedCharTypes}

@@ -19,6 +19,7 @@ export const CHARACTER_TYPES = {
 };
 
 const AlphaNumSymComplexitySettings = ({
+  disabledCharTypes,
   handleCharacterGroupOptionsChange,
   selectedCharacterGroup,
   selectedCharTypes,
@@ -59,6 +60,7 @@ const AlphaNumSymComplexitySettings = ({
         {map(CHARACTER_TYPES, (value, key) => (
           <Form.Check
             checked={selectedCharTypes.includes(value)}
+            disabled={disabledCharTypes.includes(value)}
             id={`character_type_${key}`}
             key={`cb_${key}`}
             label={capitalize(value)}
