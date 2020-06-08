@@ -21,6 +21,7 @@ export const CHARACTER_TYPES = {
 const AlphaNumSymComplexitySettings = ({
   disabledCharTypes,
   handleCharacterGroupOptionsChange,
+  handleCharacterTypeChange,
   selectedCharacterGroup,
   selectedCharTypes,
 }) => {
@@ -64,7 +65,9 @@ const AlphaNumSymComplexitySettings = ({
             id={`character_type_${key}`}
             key={`cb_${key}`}
             label={capitalize(value)}
+            onChange={handleCharacterTypeChange}
             type={'checkbox'}
+            value={value}
           />
         ))}
       </Col>

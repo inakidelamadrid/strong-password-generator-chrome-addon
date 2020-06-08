@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import concat from 'lodash/concat';
+import difference from 'lodash/difference';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -41,6 +43,13 @@ const HomePage = props => {
     setSelectedCharacterGroup(changeEvent.target.value);
   };
 
+  const handleCharacterTypeChange = (changeEvent) => {
+    const {value, checked} = changeEvent.target;
+    const action = checked ? concat : difference;
+    const newSelectedCharTypes = action(selectedCharTypes, [value]);
+    setSelectedCharTypes(newSelectedCharTypes)
+  }
+
   return (
     <div className="page">
       <h3>Strong password generator</h3>
@@ -65,6 +74,7 @@ const HomePage = props => {
         <AlphaNumSymComplexitySettings
           disabledCharTypes={disabledCharTypes}
           handleCharacterGroupOptionsChange={handleCharacterGroupOptionsChange}
+          handleCharacterTypeChange={handleCharacterTypeChange}
           selectedCharacterGroup={selectedCharacterGroup}
           selectedCharTypes={selectedCharTypes}
         />
