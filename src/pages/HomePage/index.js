@@ -9,13 +9,16 @@ import {
   CHARACTER_TYPES,
 } from './AlphaNumSymComplexitySettings';
 
+const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
+  CHARACTER_TYPES.number,
+  CHARACTER_TYPES.symbols,
+];
 const HomePage = props => {
   const [digitsLength, setDigitsLength] = useState(8);
 
-  const [disabledCharTypes, setDisabledCharTypes] = useState([
-    CHARACTER_TYPES.number,
-    CHARACTER_TYPES.symbols,
-  ]);
+  const [disabledCharTypes, setDisabledCharTypes] = useState(
+    NUMBERS_AND_SYMBOLS_GROUP_TYPES,
+  );
 
   const [selectedCharacterGroup, setSelectedCharacterGroup] = useState(
     CHARACTER_GROUPS_VALUES.easyToSay,
@@ -27,8 +30,16 @@ const HomePage = props => {
   ]);
 
   const handleDigitsLengthChange = evt => setDigitsLength(evt.target.value);
-  const handleCharacterGroupOptionsChange = changeEvent =>
+
+  const handleCharacterGroupOptionsChange = changeEvent => {
+    const value = changeEvent.target.value;
+    const charTypesToDisable =
+      value === CHARACTER_GROUPS_VALUES.easyToSay
+        ? NUMBERS_AND_SYMBOLS_GROUP_TYPES
+        : [];
+    setDisabledCharTypes(charTypesToDisable);
     setSelectedCharacterGroup(changeEvent.target.value);
+  };
 
   return (
     <div className="page">
