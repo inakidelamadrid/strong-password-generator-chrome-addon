@@ -21,6 +21,7 @@ export const CHARACTER_TYPES = {
 const AlphaNumSymComplexitySettings = ({
   handleCharacterGroupOptionsChange,
   selectedCharacterGroup,
+  selectedCharTypes,
 }) => {
   return (
     <Form.Group as={Row} controlId="digitsSensitivity">
@@ -57,6 +58,7 @@ const AlphaNumSymComplexitySettings = ({
       <Col xs={6}>
         {map(CHARACTER_TYPES, (value, key) => (
           <Form.Check
+            checked={selectedCharTypes.includes(value)}
             id={`character_type_${key}`}
             key={`cb_${key}`}
             label={capitalize(value)}
