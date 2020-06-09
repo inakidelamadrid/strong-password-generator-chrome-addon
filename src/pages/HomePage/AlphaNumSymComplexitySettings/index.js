@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import CustomRadioButton from '../../../components/CustomRadioButton';
 
 export const CHARACTER_GROUPS_VALUES = {
   all: 'all',
@@ -28,12 +29,11 @@ const AlphaNumSymComplexitySettings = ({
   return (
     <Form.Group as={Row} controlId="digitsSensitivity">
       <Col xs={6}>
-        <Form.Check
+        <CustomRadioButton
           id={'characters_easy_to_say'}
           label={'Easy to say'}
-          type={'radio'}
           checked={selectedCharacterGroup === CHARACTER_GROUPS_VALUES.easyToSay}
-          onChange={handleCharacterGroupOptionsChange}
+          handleChange={handleCharacterGroupOptionsChange}
           value={CHARACTER_GROUPS_VALUES.easyToSay}
         />
 
