@@ -84,6 +84,10 @@ const HomePage = props => {
           selectedCharacterGroup={selectedCharacterGroup}
           selectedCharTypes={selectedCharTypes}
         />
+        <Form.Group>
+          <Form.Label>Exclude the following characters</Form.Label>
+          <Form.Control type="text"/>
+        </Form.Group>
       </Form>
     </div>
   );
