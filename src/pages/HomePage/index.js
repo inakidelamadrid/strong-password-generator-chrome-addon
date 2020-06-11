@@ -10,6 +10,7 @@ import {
   CHARACTER_GROUPS_VALUES,
   CHARACTER_TYPES,
 } from './AlphaNumSymComplexitySettings';
+import ExcludeCharactersSelect from '../../components/ExcludeCharactersSelect';
 
 const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
   CHARACTER_TYPES.number,
@@ -18,9 +19,9 @@ const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
 const HomePage = props => {
   const [digitsLength, setDigitsLength] = useState(8);
 
-  const [disabledCharTypes, setDisabledCharTypes] = useState(
-    [NUMBERS_AND_SYMBOLS_GROUP_TYPES],
-  );
+  const [disabledCharTypes, setDisabledCharTypes] = useState([
+    NUMBERS_AND_SYMBOLS_GROUP_TYPES,
+  ]);
 
   const [selectedCharacterGroup, setSelectedCharacterGroup] = useState(
     CHARACTER_GROUPS_VALUES.easyToSay,
@@ -41,20 +42,19 @@ const HomePage = props => {
         : [];
     setDisabledCharTypes(charTypesToDisable);
     // if disabled types were checked, remove them from the selectedTypes
-    setSelectedCharTypes(difference(selectedCharTypes, charTypesToDisable))
+    setSelectedCharTypes(difference(selectedCharTypes, charTypesToDisable));
     setSelectedCharacterGroup(changeEvent.target.value);
   };
 
-  const handleCharacterTypeChange = (changeEvent) => {
+  const handleCharacterTypeChange = changeEvent => {
     const {value, checked} = changeEvent.target;
     // do nothing for the 'lower' value, since we need to have at least one selected type
-    if(value === CHARACTER_TYPES.lower)
-      return;
+    if (value === CHARACTER_TYPES.lower) return;
 
     const action = checked ? concat : difference;
     const newSelectedCharTypes = action(selectedCharTypes, [value]);
-    setSelectedCharTypes(newSelectedCharTypes)
-  }
+    setSelectedCharTypes(newSelectedCharTypes);
+  };
 
   return (
     <div className="page">
@@ -84,10 +84,7 @@ const HomePage = props => {
           selectedCharacterGroup={selectedCharacterGroup}
           selectedCharTypes={selectedCharTypes}
         />
-        <Form.Group>
-          <Form.Label>Exclude the following characters</Form.Label>
-          <Form.Control type="text"/>
-        </Form.Group>
+        <ExcludeCharactersSelect/>
       </Form>
     </div>
   );
