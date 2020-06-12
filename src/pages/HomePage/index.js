@@ -84,7 +84,14 @@ const HomePage = props => {
           selectedCharacterGroup={selectedCharacterGroup}
           selectedCharTypes={selectedCharTypes}
         />
-        <ExcludeCharactersSelect/>
+        <ExcludeCharactersSelect
+          show={
+            [CHARACTER_GROUPS_VALUES.easyToRead, CHARACTER_GROUPS_VALUES.all].includes(selectedCharacterGroup)
+          }
+          disabled={
+            [CHARACTER_GROUPS_VALUES.easyToRead, CHARACTER_GROUPS_VALUES.easyToSay].includes(selectedCharacterGroup)
+          }
+        />
       </Form>
     </div>
   );

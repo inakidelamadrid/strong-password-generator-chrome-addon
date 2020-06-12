@@ -11,21 +11,24 @@ const baseExcludedChars = [
   {value: 'O', label: 'O ("uppercase o")'},
 ];
 
-const ExcludeCharactersSelect = props => {
+const ExcludeCharactersSelect = ({disabled=false, show = true}) => {
   const [options, setOptions] = useState(baseExcludedChars);
 
   return (
-    <Form.Group>
-      <Form.Label>Exclude the following characters</Form.Label>
-      <Select
-        className="basic-multi-select"
-        classNamePrefix="select"
-        defaultValue={baseExcludedChars}
-        isMulti
-        name="excludedChars"
-        options={options}
-      />
-    </Form.Group>
+    show && (
+      <Form.Group>
+        <Form.Label>Exclude the following characters</Form.Label>
+        <Select
+          className="basic-multi-select"
+          classNamePrefix="select"
+          defaultValue={baseExcludedChars}
+          isDisabled={disabled}
+          isMulti
+          name="excludedChars"
+          options={options}
+        />
+      </Form.Group>
+    )
   );
 };
 export default ExcludeCharactersSelect;
