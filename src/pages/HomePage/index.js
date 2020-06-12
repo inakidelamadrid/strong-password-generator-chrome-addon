@@ -10,7 +10,9 @@ import {
   CHARACTER_GROUPS_VALUES,
   CHARACTER_TYPES,
 } from './AlphaNumSymComplexitySettings';
+
 import ExcludeCharactersSelect from '../../components/ExcludeCharactersSelect';
+import PasswordBox from '../../components/PasswordBox';
 
 const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
   CHARACTER_TYPES.number,
@@ -85,13 +87,16 @@ const HomePage = props => {
           selectedCharTypes={selectedCharTypes}
         />
         <ExcludeCharactersSelect
-          show={
-            [CHARACTER_GROUPS_VALUES.easyToRead, CHARACTER_GROUPS_VALUES.all].includes(selectedCharacterGroup)
-          }
-          disabled={
-            [CHARACTER_GROUPS_VALUES.easyToRead, CHARACTER_GROUPS_VALUES.easyToSay].includes(selectedCharacterGroup)
-          }
+          show={[
+            CHARACTER_GROUPS_VALUES.easyToRead,
+            CHARACTER_GROUPS_VALUES.all,
+          ].includes(selectedCharacterGroup)}
+          disabled={[
+            CHARACTER_GROUPS_VALUES.easyToRead,
+            CHARACTER_GROUPS_VALUES.easyToSay,
+          ].includes(selectedCharacterGroup)}
         />
+        <PasswordBox />
       </Form>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 // import logo from './logo.svg';
+import './font-awesome-library';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/NavBar';
