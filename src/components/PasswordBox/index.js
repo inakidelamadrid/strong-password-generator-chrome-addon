@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import PasswordContext from '../../context/PasswordContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Col from 'react-bootstrap/Col'
@@ -6,16 +6,26 @@ import Row from 'react-bootstrap/Row'
 import styles from './styles.module.scss'
 
 const PasswordBox = () => {
+  const passwordEl = useRef(null)
   const values = useContext(PasswordContext)
+
+  const copyPasswordToClipboard = evt => {
+    evt.preventDefault()
+    passwordEl.current.select()
+    document.execCommand('copy')
+  }
 
   return (
     <Row className={styles.passwordBox}>
       <Col className={styles.password} xs={9}>
-        {values.password}
+        <textarea value={values.password} readOnly ref={passwordEl} />
       </Col>
       <Col>
         <div className={styles.centerItems}>
-          <button className={styles.actionButton}>
+          <button
+            className={styles.actionButton}
+            onClick={copyPasswordToClipboard}
+          >
             <FontAwesomeIcon icon="copy" size="2x" color="#197bff" />
           </button>
         </div>
