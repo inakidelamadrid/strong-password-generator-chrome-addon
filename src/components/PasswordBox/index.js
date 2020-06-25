@@ -1,26 +1,33 @@
-import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import styles from './styles.module.scss';
+import React, { useContext } from 'react'
+import PasswordContext from '../../context/PasswordContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import styles from './styles.module.scss'
 
-const PasswordBox = props => {
+const PasswordBox = () => {
+  const values = useContext(PasswordContext)
+
   return (
     <Row className={styles.passwordBox}>
       <Col className={styles.password} xs={9}>
-        Some password here
+        {values.password}
       </Col>
       <Col>
         <div className={styles.centerItems}>
-          <FontAwesomeIcon icon="copy" size="2x" color="#197bff" />
+          <button className={styles.actionButton}>
+            <FontAwesomeIcon icon="copy" size="2x" color="#197bff" />
+          </button>
         </div>
       </Col>
       <Col>
         <div className={styles.centerItems}>
-          <FontAwesomeIcon icon="redo" size="2x" color="#197bff" />
+          <button className={styles.actionButton}>
+            <FontAwesomeIcon icon="redo" size="2x" color="#197bff" />
+          </button>
         </div>
       </Col>
     </Row>
-  );
-};
-export default PasswordBox;
+  )
+}
+export default PasswordBox
