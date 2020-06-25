@@ -1,9 +1,18 @@
-.passwordBox{
-   display: flex;
-   justify-content: space-between;
+.centerItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-   margin-top: 25px;
-   padding: 5px;
-   background: gray;
-   color: white;
+  height: 100%;
+}
+
+.passwordBox {
+  margin-top: 25px;
+  padding: 5px;
+}
+
+.password {
+  font-size: 36px;
+  line-height: 3em;
+  text-align: center;
 }
