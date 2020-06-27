@@ -24,10 +24,10 @@ const getRandomGenerator = (type) =>
   }[type])
 
 const generatePassword = ({
-  containsLower,
-  containsUpper,
-  containsNumbers,
-  containsSymbols,
+  containsLower=true,
+  containsUpper=false,
+  containsNumbers=false,
+  containsSymbols=false,
   length,
 }) => {
   const types = {
