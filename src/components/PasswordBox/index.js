@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 
 const PasswordBox = () => {
   const passwordEl = useRef(null)
-  const values = useContext(PasswordContext)
+  const [password,] = useContext(PasswordContext)
 
   const copyPasswordToClipboard = evt => {
     evt.preventDefault()
@@ -18,7 +18,7 @@ const PasswordBox = () => {
   return (
     <Row className={styles.passwordBox}>
       <Col className={styles.password} xs={9}>
-        <textarea value={values.password} readOnly ref={passwordEl} />
+        <textarea value={password} readOnly ref={passwordEl} />
       </Col>
       <Col>
         <div className={styles.centerItems}>
