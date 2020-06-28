@@ -5,6 +5,7 @@ import difference from 'lodash/difference'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
+import { INITIAL_PASSWORD_LENGTH } from '../../globals'
 import styles from './styles.module.css'
 import AlphaNumSymComplexitySettings from './AlphaNumSymComplexitySettings'
 import {
@@ -21,7 +22,7 @@ const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
 ]
 const HomePage = (props) => {
   const { setPasswordLength } = useContext(PasswordContext)
-  const [digitsLength, setDigitsLength] = useState(8)
+  const [digitsLength, setDigitsLength] = useState(INITIAL_PASSWORD_LENGTH)
 
   const [disabledCharTypes, setDisabledCharTypes] = useState([
     NUMBERS_AND_SYMBOLS_GROUP_TYPES,
@@ -37,10 +38,10 @@ const HomePage = (props) => {
   ])
 
   const handleDigitsLengthChange = (evt) => {
-    const length = evt.target.value;
+    const length = evt.target.value
 
     setPasswordLength(length)
-    setDigitsLength(length);
+    setDigitsLength(length)
   }
 
   const handleCharacterGroupOptionsChange = (changeEvent) => {

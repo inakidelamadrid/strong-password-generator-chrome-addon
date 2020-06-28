@@ -1,0 +1,1 @@
+export const INITIAL_PASSWORD_LENGTH = 8
