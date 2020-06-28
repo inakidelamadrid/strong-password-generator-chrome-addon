@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 
 const PasswordBox = () => {
   const passwordEl = useRef(null)
-  const [password,] = useContext(PasswordContext)
+  const {password} = useContext(PasswordContext)
 
   const copyPasswordToClipboard = evt => {
     evt.preventDefault()
