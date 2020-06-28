@@ -12,7 +12,7 @@ const baseExcludedChars = [
 ];
 
 const ExcludeCharactersSelect = ({disabled=false, show = true}) => {
-  const [options, setOptions] = useState(baseExcludedChars);
+  const [options,] = useState(baseExcludedChars);
 
   return (
     show && (
