@@ -7,12 +7,18 @@ import styles from './styles.module.scss'
 
 const PasswordBox = () => {
   const passwordEl = useRef(null)
-  const {password} = useContext(PasswordContext)
+  const {password, regeneratePassword} = useContext(PasswordContext)
 
   const copyPasswordToClipboard = evt => {
     evt.preventDefault()
     passwordEl.current.select()
     document.execCommand('copy')
+  }
+
+  const handleRegeneratePassword = (evt) => {
+    evt.preventDefault();
+    // regenerate password using context
+    regeneratePassword();
   }
 
   return (
@@ -32,7 +38,7 @@ const PasswordBox = () => {
       </Col>
       <Col>
         <div className={styles.centerItems}>
-          <button className={styles.actionButton}>
+          <button className={styles.actionButton} onClick={handleRegeneratePassword}>
             <FontAwesomeIcon icon="redo" size="2x" color="#197bff" />
           </button>
         </div>
