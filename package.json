@@ -19,7 +19,6 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-select": "^3.1.0",
     "websocket-extensions": "0.1.4",
     "yup": "^0.29.1"
   },
@@ -44,7 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "react-cosmos": "^5.4.0"
-  }
+  "devDependencies": {}
 }
