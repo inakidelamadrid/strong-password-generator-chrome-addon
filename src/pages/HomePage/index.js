@@ -1,20 +1,21 @@
 import React, { useState, useContext } from 'react'
-import PasswordContext from '../../context/PasswordContext'
 import concat from 'lodash/concat'
 import difference from 'lodash/difference'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
+
+import PasswordContext from '../../context/PasswordContext'
 import { INITIAL_PASSWORD_LENGTH } from '../../globals'
+import ExcludeCharactersSelect from '../../components/ExcludeCharactersSelect'
+import PasswordBox from '../../components/PasswordBox'
+
 import styles from './styles.module.css'
 import AlphaNumSymComplexitySettings from './AlphaNumSymComplexitySettings'
 import {
   CHARACTER_GROUPS_VALUES,
   CHARACTER_TYPES,
 } from './AlphaNumSymComplexitySettings'
-
-import ExcludeCharactersSelect from '../../components/ExcludeCharactersSelect'
-import PasswordBox from '../../components/PasswordBox'
 
 const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
   CHARACTER_TYPES.number,
@@ -55,7 +56,12 @@ const HomePage = (props) => {
     setDisabledCharTypes(charTypesToDisable)
 
     // if disabled types were checked, remove them from the selectedTypes
-    setSelectedCharTypes(difference(selectedCharTypes, charTypesToDisable))
+    const newSelectedCharacterTypes = difference(
+      selectedCharTypes,
+      charTypesToDisable
+    )
+    setSelectedCharTypes(newSelectedCharacterTypes)
+    setContextSelectedTypes(newSelectedCharacterTypes)
     setSelectedCharacterGroup(changeEvent.target.value)
   }
 
