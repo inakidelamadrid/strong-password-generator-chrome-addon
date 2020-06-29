@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Overlay from 'react-bootstrap/Overlay'
 
-const IconWithTooltip = (props) => {
+const IconWithTooltip = ({icon}) => {
   const ref = useRef(null)
   const [isTooltipVisible, setIsTooltipVisible] = useState(false)
   const showTooltip = () => setIsTooltipVisible(true)
@@ -12,7 +12,7 @@ const IconWithTooltip = (props) => {
     <>
       <span ref={ref} onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
         <FontAwesomeIcon
-          icon="redo"
+          icon={icon.name}
           color="#197bff"
           onMouseEnter={showTooltip}
           onMouseLeave={hideTooltip}

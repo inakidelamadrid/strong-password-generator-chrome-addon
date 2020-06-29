@@ -29,7 +29,7 @@ const AlphaNumSymComplexitySettings = ({
 }) => {
   const easyToReadLabel = (
     <label>
-      {'Easy to read'} <IconWithTooltip />
+      {'Easy to read'} <IconWithTooltip icon={{ name: 'info-circle' }} />
     </label>
   )
 
