@@ -1,7 +1,14 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
+import React from 'react'
+import Form from 'react-bootstrap/Form'
 
-const CustomRadioButton = ({checked, id, label, handleChange, value}) => {
+const CustomRadioButton = ({
+  checked,
+  id,
+  label,
+  handleChange,
+  value,
+  ...rest
+}) => {
   return (
     <Form.Check
       id={id}
@@ -10,7 +17,8 @@ const CustomRadioButton = ({checked, id, label, handleChange, value}) => {
       checked={checked}
       onChange={handleChange}
       value={value}
+      {...rest}
     />
-  );
-};
-export default CustomRadioButton;
+  )
+}
+export default CustomRadioButton
