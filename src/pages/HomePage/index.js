@@ -21,7 +21,9 @@ const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
   CHARACTER_TYPES.symbols,
 ]
 const HomePage = (props) => {
-  const { setPasswordLength } = useContext(PasswordContext)
+  const { setPasswordLength, setContextSelectedTypes } = useContext(
+    PasswordContext
+  )
   const [digitsLength, setDigitsLength] = useState(INITIAL_PASSWORD_LENGTH)
 
   const [disabledCharTypes, setDisabledCharTypes] = useState([
@@ -51,6 +53,7 @@ const HomePage = (props) => {
         ? NUMBERS_AND_SYMBOLS_GROUP_TYPES
         : []
     setDisabledCharTypes(charTypesToDisable)
+
     // if disabled types were checked, remove them from the selectedTypes
     setSelectedCharTypes(difference(selectedCharTypes, charTypesToDisable))
     setSelectedCharacterGroup(changeEvent.target.value)
@@ -58,12 +61,17 @@ const HomePage = (props) => {
 
   const handleCharacterTypeChange = (changeEvent) => {
     const { value, checked } = changeEvent.target
+
     // do nothing for the 'lower' value, since we need to have at least one selected type
     if (value === CHARACTER_TYPES.lower) return
 
     const action = checked ? concat : difference
     const newSelectedCharTypes = action(selectedCharTypes, [value])
+
+    // update internal state (modifies UI) and then
+    // recalculate password by modifying context' state
     setSelectedCharTypes(newSelectedCharTypes)
+    setContextSelectedTypes(newSelectedCharTypes)
   }
 
   return (
