@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import difference from 'lodash/difference'
 import reduce from 'lodash/reduce'
-import { INITIAL_PASSWORD_LENGTH } from '../globals'
+import values from 'lodash/values'
+import { CHARACTER_TYPES, INITIAL_PASSWORD_LENGTH } from '../globals'
 import generatePassword from '../service/Password'
 
 const mapCharTypeToParam = (charType) => {
@@ -61,17 +63,22 @@ export const PasswordProvider = ({ children }) => {
     // regenerate password
     setPassword(generatePassword({ ...params, length }))
 
-    // and now modify state so that calls containing nothing or only the length,
-    // regenerate the password accordingly
-    typesArray.forEach((charType) => {
-      const setter = {
+    const getSetter = (charType) =>
+      ({
         lowercase: setContainsLower,
         uppercase: setContainsUpper,
         numbers: setContainsNumbers,
         symbols: setContainsSymbols,
-      }[charType]
-      setter(true)
-    })
+      }[charType])
+
+    
+    // and now modify state so that calls containing nothing or only the length,
+    // regenerate the password accordingly
+    typesArray.forEach((charType) => getSetter(charType)(true))
+
+    difference(values(CHARACTER_TYPES), typesArray).forEach((charType) =>
+      getSetter(charType)(false)
+    )
   }
 
   return (
