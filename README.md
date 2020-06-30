@@ -67,9 +67,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ## TODO
 - [X] Add options "Easy to say", "Easy to read" and "All characters" to generate the password
 - [X] Add checkboxes (inclusive) for the attributes (lowercase, uppercase, numbers, and special characters)
+- [X] Add an input to explicitly exclude certain characters
+- [ ] Add Context API to ease the flow of state between the components
+- [ ] Fix style of the password box
+- [ ] Add module to calculate password with jest tests
 - [ ] Add a tooltip functionality for the following info on the radiobuttons
 - [ ] Easy to say: Avoid numbers and special characters
 - [ ] Easy to read: Avoid ambiguous values such as 1, l, 0, O
 - [ ] All characters: Any character combination
-- [ ] Add an input to explicitly exclude certain characters
 - [ ] Add button to copy to clipboard
