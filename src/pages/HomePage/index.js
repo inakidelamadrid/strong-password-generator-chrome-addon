@@ -6,7 +6,12 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 
 import PasswordContext from '../../context/PasswordContext'
-import { INITIAL_PASSWORD_LENGTH } from '../../globals'
+import {
+  INITIAL_PASSWORD_LENGTH,
+  INITIAL_EXCLUDED_LOWERCASE,
+  INITIAL_EXCLUDED_NUMBERS,
+  INITIAL_EXCLUDED_UPPERCASE,
+} from '../../globals'
 import ExcludeCharactersSelect from '../../components/ExcludeCharactersSelect'
 import PasswordBox from '../../components/PasswordBox'
 
@@ -21,7 +26,7 @@ const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
   CHARACTER_TYPES.number,
   CHARACTER_TYPES.symbols,
 ]
-const HomePage = (props) => {
+const HomePage = props => {
   const { setPasswordLength, setContextSelectedTypes } = useContext(
     PasswordContext
   )
@@ -40,19 +45,41 @@ const HomePage = (props) => {
     CHARACTER_TYPES.upper,
   ])
 
-  const handleDigitsLengthChange = (evt) => {
+  const handleDigitsLengthChange = evt => {
     const length = evt.target.value
 
     setPasswordLength(length)
     setDigitsLength(length)
   }
 
-  const handleCharacterGroupOptionsChange = (changeEvent) => {
+  const getDisabledTypesAndExcludedSymbols = value => {
+    const defaultExcludedChars = {
+      excludeLower: INITIAL_EXCLUDED_LOWERCASE,
+      excludeNumbers: INITIAL_EXCLUDED_NUMBERS,
+      excludeUpper: INITIAL_EXCLUDED_UPPERCASE,
+    }
+    switch (value) {
+      case CHARACTER_GROUPS_VALUES.easyToSay:
+        return [NUMBERS_AND_SYMBOLS_GROUP_TYPES, defaultExcludedChars]
+      case CHARACTER_GROUPS_VALUES.easyToRead:
+        return [[], defaultExcludedChars]
+      case CHARACTER_GROUPS_VALUES.all:
+        return [[], {}]
+      default:
+        return [NUMBERS_AND_SYMBOLS_GROUP_TYPES, defaultExcludedChars]
+    }
+  }
+
+  const handleCharacterGroupOptionsChange = changeEvent => {
     const value = changeEvent.target.value
-    const charTypesToDisable =
-      value === CHARACTER_GROUPS_VALUES.easyToSay
-        ? NUMBERS_AND_SYMBOLS_GROUP_TYPES
-        : []
+
+    /*
+     * rules -
+     * 1) easy to say: disable numbers and symbols
+     * 2) easy to read: exclude 0, 1, l and 0
+     * 3) all characters: disabled types and excluded chars are empty
+     */
+    const [charTypesToDisable] = getDisabledTypesAndExcludedSymbols(value)
     setDisabledCharTypes(charTypesToDisable)
 
     // if disabled types were checked, remove them from the selectedTypes
@@ -60,12 +87,13 @@ const HomePage = (props) => {
       selectedCharTypes,
       charTypesToDisable
     )
+
     setSelectedCharTypes(newSelectedCharacterTypes)
     setContextSelectedTypes(newSelectedCharacterTypes)
-    setSelectedCharacterGroup(changeEvent.target.value)
+    setSelectedCharacterGroup(value)
   }
 
-  const handleCharacterTypeChange = (changeEvent) => {
+  const handleCharacterTypeChange = changeEvent => {
     const { value, checked } = changeEvent.target
 
     // do nothing for the 'lower' value, since we need to have at least one selected type
