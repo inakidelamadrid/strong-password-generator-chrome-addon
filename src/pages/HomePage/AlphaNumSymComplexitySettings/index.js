@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import CustomRadioButton from '../../../components/CustomRadioButton'
 import IconWithTooltip from '../../../components/IconWithTooltip'
+import styles from './styles.module.scss'
 
 export const CHARACTER_GROUPS_VALUES = {
   all: 'all',
@@ -42,8 +43,9 @@ const AlphaNumSymComplexitySettings = ({
 
   return (
     <Form.Group as={Row} controlId="digitsSensitivity">
-      <Col xs={6}>
+      <Col xs={6} className={styles.optionsColumn}>
         <CustomRadioButton
+          className={styles.option}
           id={'characters_easy_to_say'}
           label={'Easy to say'}
           checked={selectedCharacterGroup === CHARACTER_GROUPS_VALUES.easyToSay}
@@ -55,6 +57,7 @@ const AlphaNumSymComplexitySettings = ({
           checked={
             selectedCharacterGroup === CHARACTER_GROUPS_VALUES.easyToRead
           }
+          className={styles.option}
           id={'characters_easy_to_read'}
           label={easyToReadLabel}
           onChange={handleCharacterGroupOptionsChange}
@@ -64,6 +67,7 @@ const AlphaNumSymComplexitySettings = ({
 
         <Form.Check
           checked={selectedCharacterGroup === CHARACTER_GROUPS_VALUES.all}
+          className={styles.option}
           id={'all_characters'}
           label={'All characters'}
           onChange={handleCharacterGroupOptionsChange}
@@ -71,10 +75,11 @@ const AlphaNumSymComplexitySettings = ({
           value={CHARACTER_GROUPS_VALUES.all}
         />
       </Col>
-      <Col xs={6}>
+      <Col xs={6} className={styles.optionsColumn}>
         {map(CHARACTER_TYPES, (value, key) => (
           <Form.Check
             checked={selectedCharTypes.includes(value)}
+            className={styles.option}
             disabled={disabledCharTypes.includes(value)}
             id={`character_type_${key}`}
             key={`cb_${key}`}

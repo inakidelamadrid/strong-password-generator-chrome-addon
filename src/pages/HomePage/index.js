@@ -15,7 +15,7 @@ import {
 import ExcludeCharactersSelect from '../../components/ExcludeCharactersSelect'
 import PasswordBox from '../../components/PasswordBox'
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 import AlphaNumSymComplexitySettings from './AlphaNumSymComplexitySettings'
 import {
   CHARACTER_GROUPS_VALUES,
