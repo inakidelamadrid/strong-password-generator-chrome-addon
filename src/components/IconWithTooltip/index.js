@@ -2,12 +2,16 @@ import React, { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Overlay from 'react-bootstrap/Overlay'
 
-const IconWithTooltip = ({icon}) => {
+const IconWithTooltip = ({ icon, tooltip }) => {
   const ref = useRef(null)
   const [isTooltipVisible, setIsTooltipVisible] = useState(false)
   const showTooltip = () => setIsTooltipVisible(true)
   const hideTooltip = () => setIsTooltipVisible(false)
 
+  const tooltipData = {
+    text: 'Tooltip',
+    ...tooltip,
+  }
   return (
     <>
       <span ref={ref} onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
@@ -37,7 +41,7 @@ const IconWithTooltip = ({icon}) => {
               ...props.style,
             }}
           >
-            Hides difficult to read characters such as 1, l, 0 or O
+            {tooltipData.text}
           </div>
         )}
       </Overlay>
