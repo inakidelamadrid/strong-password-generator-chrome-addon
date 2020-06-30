@@ -2,6 +2,11 @@ import compact from 'lodash/compact'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import range from 'lodash/range'
+import {
+  INITIAL_EXCLUDED_LOWERCASE,
+  INITIAL_EXCLUDED_NUMBERS,
+  INITIAL_EXCLUDED_UPPERCASE,
+} from '../globals'
 
 const getRandomAscii = (range, displacement) =>
   String.fromCharCode(Math.floor(Math.random() * range) + displacement)
@@ -28,9 +33,9 @@ const getRandomOrRetry = (fn, exclude = []) => {
 
 const getRandomGenerator = (
   type,
-  excludeNumbers = ['0', '1'],
-  excludeUpper = ['O'],
-  excludeLower = ['l']
+  excludeNumbers = INITIAL_EXCLUDED_NUMBERS,
+  excludeUpper = INITIAL_EXCLUDED_UPPERCASE,
+  excludeLower = INITIAL_EXCLUDED_LOWERCASE
 ) =>
   ({
     containsLower: getRandomOrRetry(getRandomLower, excludeLower),
