@@ -27,9 +27,12 @@ const NUMBERS_AND_SYMBOLS_GROUP_TYPES = [
   CHARACTER_TYPES.symbols,
 ]
 const HomePage = props => {
-  const { setPasswordLength, setContextSelectedTypes } = useContext(
-    PasswordContext
-  )
+  const {
+    setPasswordLength,
+    setContextSelectedTypes,
+    setContextExcludedChars,
+  } = useContext(PasswordContext)
+
   const [digitsLength, setDigitsLength] = useState(INITIAL_PASSWORD_LENGTH)
 
   const [disabledCharTypes, setDisabledCharTypes] = useState([
@@ -79,7 +82,10 @@ const HomePage = props => {
      * 2) easy to read: exclude 0, 1, l and 0
      * 3) all characters: disabled types and excluded chars are empty
      */
-    const [charTypesToDisable] = getDisabledTypesAndExcludedSymbols(value)
+    const [
+      charTypesToDisable,
+      excludedChars,
+    ] = getDisabledTypesAndExcludedSymbols(value)
     setDisabledCharTypes(charTypesToDisable)
 
     // if disabled types were checked, remove them from the selectedTypes
@@ -91,6 +97,7 @@ const HomePage = props => {
     setSelectedCharTypes(newSelectedCharacterTypes)
     setContextSelectedTypes(newSelectedCharacterTypes)
     setSelectedCharacterGroup(value)
+    setContextExcludedChars(excludedChars)
   }
 
   const handleCharacterTypeChange = changeEvent => {

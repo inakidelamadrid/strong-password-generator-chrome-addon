@@ -2,11 +2,6 @@ import compact from 'lodash/compact'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import range from 'lodash/range'
-import {
-  INITIAL_EXCLUDED_LOWERCASE,
-  INITIAL_EXCLUDED_NUMBERS,
-  INITIAL_EXCLUDED_UPPERCASE,
-} from '../globals'
 
 const getRandomAscii = (range, displacement) =>
   String.fromCharCode(Math.floor(Math.random() * range) + displacement)
@@ -31,12 +26,7 @@ const getRandomOrRetry = (fn, exclude = []) => {
   }
 }
 
-const getRandomGenerator = (
-  type,
-  excludeNumbers = INITIAL_EXCLUDED_NUMBERS,
-  excludeUpper = INITIAL_EXCLUDED_UPPERCASE,
-  excludeLower = INITIAL_EXCLUDED_LOWERCASE
-) =>
+const getRandomGenerator = (type, excludeNumbers, excludeUpper, excludeLower) =>
   ({
     containsLower: getRandomOrRetry(getRandomLower, excludeLower),
     containsNumbers: getRandomOrRetry(getRandomNumber, excludeNumbers),
@@ -45,11 +35,14 @@ const getRandomGenerator = (
   }[type])
 
 const generatePassword = ({
+  excludeNumbers,
+  excludeUpper,
+  excludeLower,
+  length,
   containsLower = true,
   containsUpper = false,
   containsNumbers = false,
   containsSymbols = false,
-  length,
 }) => {
   const types = {
     containsLower,
@@ -64,7 +57,10 @@ const generatePassword = ({
     ? ''
     : map(range(length), () => {
         const randomGenerator = getRandomGenerator(
-          allowed[Math.floor(Math.random() * allowed.length)]
+          allowed[Math.floor(Math.random() * allowed.length)],
+          excludeNumbers,
+          excludeUpper,
+          excludeLower
         )
         return randomGenerator()
       }).join('')
